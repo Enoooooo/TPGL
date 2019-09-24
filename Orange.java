@@ -21,8 +21,12 @@ public class Orange {
 		return origine;
 	}
 	
+	public String toString() {
+		return "Cette orange de "+origine+" coûte "+prix+"€";
+	}
+	
 	public void affiche() {
-		System.out.println("Cette orange de "+origine+" coûte "+prix+"€");
+		System.out.println(toString());
 	}
 	
 	public static void main(String[] args) throws PrixNegatifException {
