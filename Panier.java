@@ -2,11 +2,11 @@ import java.util.ArrayList;
 
 public class Panier {
 
-	private ArrayList liste;
+	private ArrayList<Orange> liste;
 	private final int max;
 	
 	public Panier(int m) {
-		liste = new ArrayList();
+		liste = new ArrayList<Orange>();
 		max = m;
 	}
 	
@@ -45,10 +45,29 @@ public class Panier {
 		return false;
 	}
 	
+	public boolean retire() {
+		if(!estVide()) {
+			liste.remove(liste.size()-1);
+			return true;
+		}
+		else System.out.println("Panier vide.");
+		return false;
+	}
+	
+	public double getPrix() {
+		double p = 0;
+		for(Orange o : liste) {
+			p += o.getPrix();
+		}
+		return p;
+	}
+	
 	public static void main(String[] args) throws PrixNegatifException {
 		Panier p = new Panier(2);
 		System.out.println("Panier plein ? "+p.estPlein());
 		System.out.println("Panier vide ? "+p.estVide());
+		
+		p.retire();
 		
 		Orange o1 = new Orange(0.6,"Ouais");
 		p.ajoute(o1);
@@ -62,9 +81,13 @@ public class Panier {
 		System.out.println("Panier plein ? "+p.estPlein());
 		System.out.println("Panier vide ? "+p.estVide());
 		
-		Orange o3 = new Orange(0.7,"aaaaaaaakk");
-		p.ajoute(o3);
-
+		System.out.println(p.getPrix());
+		
+		p.retire();
+		
+		System.out.println("Panier plein ? "+p.estPlein());
+		System.out.println("Panier vide ? "+p.estVide());
+		
 	}
 	
 }
